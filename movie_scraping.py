@@ -16,3 +16,17 @@ driver = webdriver.Chrome(
 
 driver.get('https://www.justwatch.com/us/movies')
 time.sleep(5)
+
+for _ in range(6):
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    time.sleep(3)
+
+movies = driver.find_elements(By.CSS_SELECTOR, 'div.title-list-grid__item a')
+
+links = []
+for movie in movies:
+    link = movie.get_attribute('href')
+    if link:
+        links.append(link)
+
+print(f"Total movie links: {len(links)}")
