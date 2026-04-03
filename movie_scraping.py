@@ -54,3 +54,63 @@ for i, link in enumerate(links[:total]):
     time.sleep(3)
 
     soup = BeautifulSoup(driver.page_source, 'html.parser')
+
+    try:
+        title = soup.find('h1').get_text(strip=True)
+    except:
+        title = 'N/A'
+
+    try:
+        year = soup.find("span", class_="release-year").get_text(strip=True)
+    except:
+        year = 'N/A'
+
+    try:
+        imdb = soup.find("span", class_="imdb-score").get_text(strip=True)
+    except:
+        imdb = "N/A"
+
+    try:
+        details = soup.find_all("div", class_="title-detail-hero-details__item")
+        duration = next((d.text.strip() for d in details if "min" in d.text), "N/A")
+    except:
+        duration = "N/A"
+
+    try:
+        for div in soup.find_all("div", class_="poster-detail-infos__value"):
+            span = div.find("span")
+            if span:
+                text = span.get_text(strip=True)
+
+                if "," in text and not any(char.isdigit() for char in text):
+                    genres = text
+                    break
+    except:
+        genres = "N/A"
+
+    try:
+        article = soup.find("article", class_="article-block")
+        if article:
+            synopsis_p = article.find("p")
+            if synopsis_p:
+                synopsis = synopsis_p.get_text(strip=True)
+    except:
+        synopsis = "N/A"
+
+    try:
+        actors = soup.find_all("div", class_="title-credits__actor")
+        cast = ", ".join(actor.find('span', class_='title-credit-name').get_text(strip=True) for actor in actors if actor.find('span', class_='title-credit-name'))
+    except:
+        cast = "N/A"
+
+    try:
+        directors = soup.find_all("div", class_="poster-detail-infos")
+        director = ", ".join(director.find('span', class_='title-credit-name').get_text(strip=True) for director in directors if director.find('span', class_='title-credit-name'))
+    except:
+        director = "N/A"
+
+    try:
+        providers = [p.get("alt") for p in soup.select("img.provider-icon")]
+        providers = ", ".join(providers)
+    except:
+        providers = "N/A"
