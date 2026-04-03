@@ -19,7 +19,7 @@ time.sleep(5)
 
 last_height = driver.execute_script("return document.body.scrollHeight")
 
-for _ in range(1):
+for _ in range(30):
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     time.sleep(3)
 
@@ -46,10 +46,7 @@ print(f"Total movie links: {len(links)}")
 
 data = []
 
-total = min(len(links), 1)
-
-for i, link in enumerate(links[:total]):
-    print(f"\nScrapping {i+1}: {link}")
+for i, link in enumerate(links):
     driver.get(link)
     time.sleep(3)
 
@@ -128,8 +125,8 @@ for i, link in enumerate(links[:total]):
         "Link": link
     })
 
-    driver.quit()
+driver.quit()
 
-    df = pd.DataFrame(data)
-    df.to_csv("movies.csv", index=False)
-    print(df.head())
+df = pd.DataFrame(data)
+df.to_csv("movies.csv", index=False)
+print(df.head())
