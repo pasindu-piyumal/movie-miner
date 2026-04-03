@@ -19,7 +19,7 @@ time.sleep(5)
 
 last_height = driver.execute_script("return document.body.scrollHeight")
 
-for _ in range(40):
+for _ in range(1):
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     time.sleep(3)
 
@@ -43,3 +43,12 @@ for movie in movies:
         links.append(link)
 
 print(f"Total movie links: {len(links)}")
+
+data = []
+
+total = min(len(links), 1)
+
+for i, link in enumerate(links[:total]):
+    print(f"\nScrapping {i+1}: {link}")
+    driver.get(link)
+    time.sleep(3)
