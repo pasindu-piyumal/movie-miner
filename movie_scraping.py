@@ -124,6 +124,12 @@ for i, link in enumerate(links[:total]):
         "Synopsis": synopsis,
         "Cast": cast,
         "Director": director,
-        "Providers": providers
+        "Providers": providers,
         "Link": link
     })
+
+    driver.quit()
+
+    df = pd.DataFrame(data)
+    df.to_csv("movies.csv", index=False)
+    print(df.head())
