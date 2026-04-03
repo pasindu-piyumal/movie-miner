@@ -114,3 +114,16 @@ for i, link in enumerate(links[:total]):
         providers = ", ".join(providers)
     except:
         providers = "N/A"
+
+    data.append({
+        "Title": title,
+        "Year": year,
+        "IMDb Rating": imdb,
+        "Duration": duration,
+        "Genres": genres,
+        "Synopsis": synopsis,
+        "Cast": cast,
+        "Director": director,
+        "Providers": providers
+        "Link": link
+    })
