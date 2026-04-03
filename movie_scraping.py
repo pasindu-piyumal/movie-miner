@@ -19,9 +19,7 @@ time.sleep(5)
 
 last_height = driver.execute_script("return document.body.scrollHeight")
 
-last_height = driver.execute_script("return document.body.scrollHeight")
-
-for _ in range(10):
+for _ in range(40):
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     time.sleep(3)
 
