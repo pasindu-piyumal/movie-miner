@@ -17,9 +17,24 @@ driver = webdriver.Chrome(
 driver.get('https://www.justwatch.com/us/movies')
 time.sleep(5)
 
-for _ in range(6):
+last_height = driver.execute_script("return document.body.scrollHeight")
+
+last_height = driver.execute_script("return document.body.scrollHeight")
+
+for _ in range(10):
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     time.sleep(3)
+
+    driver.execute_script("window.scrollBy(0, -500);")
+    time.sleep(1)
+    driver.execute_script("window.scrollBy(0, 500);")
+
+    new_height = driver.execute_script("return document.body.scrollHeight")
+
+    if new_height == last_height:
+        break
+
+    last_height = new_height
 
 movies = driver.find_elements(By.CSS_SELECTOR, 'div.title-list-grid__item a')
 
