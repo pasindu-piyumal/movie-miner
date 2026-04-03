@@ -52,3 +52,5 @@ for i, link in enumerate(links[:total]):
     print(f"\nScrapping {i+1}: {link}")
     driver.get(link)
     time.sleep(3)
+
+    soup = BeautifulSoup(driver.page_source, 'html.parser')
