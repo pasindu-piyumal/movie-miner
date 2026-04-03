@@ -13,3 +13,6 @@ driver = webdriver.Chrome(
     service=Service(ChromeDriverManager().install()),
     options=options
 )
+
+driver.get('https://www.justwatch.com/us/movies')
+time.sleep(5)
