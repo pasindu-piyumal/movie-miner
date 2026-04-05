@@ -22,7 +22,7 @@ function fetchMovies() {
                         <p><b>Cast:</b> ${movie.Cast}</p>
                         <p><b>Director:</b> ${movie.Director}</p>
                         <p><b>Streaming:</b> ${movie.Providers}</p>
-                        <a href="${movie.Link}" target="_blank">View More</a>
+                        <a href="${movie.link}" target="_blank">View More</a>
                     </div>
                 `;
             });
@@ -34,5 +34,4 @@ function fetchMovies() {
 document.getElementById("search").addEventListener("keyup", fetchMovies);
 document.getElementById("genre").addEventListener("change", fetchMovies);
 
-// Load all movies initially
 fetchMovies();
